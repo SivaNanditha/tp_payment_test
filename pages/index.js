@@ -167,24 +167,25 @@ export default function Home() {
 
     switch (app) {
       case "gpay":
-        // Android intent link for GPay
+        // Android intent for GPay
         appUrl = `intent://${upiUrl.replace(
           "upi://",
           ""
         )}#Intent;package=com.google.android.apps.nbu.paisa.user;end`;
         break;
       case "phonepe":
-        // PhonePe custom URI
-        appUrl = `phonepe://upi/pay?${upiUrl.split("?")[1]}`;
+        // PhonePe expects the same UPI URL but with phonepe://pay?...
+        appUrl = upiUrl.replace("upi://pay?", "phonepe://pay?");
         break;
       case "paytm":
-        // Paytm custom URI
-        appUrl = `paytmmp://pay?${upiUrl.split("?")[1]}`;
+        // Paytm supports "upi://pay?..." but app must be installed
+        appUrl = upiUrl;
         break;
       default:
-        appUrl = upiUrl; // fallback generic UPI link
+        appUrl = upiUrl;
     }
 
+    // Open the link
     window.location.href = appUrl;
   };
 
