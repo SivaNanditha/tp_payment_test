@@ -162,31 +162,48 @@ export default function Home() {
   const openUPIApp = (app) => {
     if (!paymentInfo?.upiIntent) return;
 
-    const upiUrl = paymentInfo.upiIntent; // e.g., upi://pay?pa=merchant@bank&pn=Merchant
+    const upiUrl = paymentInfo.upiIntent;
     let appUrl = "";
+    let fallbackUrl = "";
 
     switch (app) {
       case "gpay":
-        // Android intent for GPay
         appUrl = `intent://${upiUrl.replace(
           "upi://",
           ""
         )}#Intent;package=com.google.android.apps.nbu.paisa.user;end`;
+        fallbackUrl =
+          "https://play.google.com/store/apps/details?id=com.google.android.apps.nbu.paisa.user&hl=en&gl=US";
         break;
+
       case "phonepe":
-        // PhonePe expects the same UPI URL but with phonepe://pay?...
         appUrl = upiUrl.replace("upi://pay?", "phonepe://pay?");
+        // PhonePe fallback is optional, you can add Play Store link if needed
         break;
+
       case "paytm":
-        // Paytm supports "upi://pay?..." but app must be installed
-        appUrl = upiUrl;
+        appUrl = upiUrl; // generic UPI link
+        fallbackUrl =
+          "https://play.google.com/store/apps/details?id=net.one97.paytm&hl=en&gl=US";
         break;
+
       default:
         appUrl = upiUrl;
     }
 
-    // Open the link
-    window.location.href = appUrl;
+    if (fallbackUrl) {
+      // Fallback logic: redirect to install if app not opened
+      const timeout = setTimeout(() => {
+        window.location.href = fallbackUrl;
+      }, 2000); // wait 2 seconds
+
+      window.location.href = appUrl;
+
+      // If user leaves page to app, clear the timeout
+      window.addEventListener("blur", () => clearTimeout(timeout));
+    } else {
+      window.location.href = appUrl;
+    }
   };
 
   const copyToClipboard = async (text) => {
