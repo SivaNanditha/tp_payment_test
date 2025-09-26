@@ -1,5 +1,5 @@
-import "@/styles/globals.css";
+import "../styles/styles.css"; // global CSS import here only
 
-export default function App({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }
