@@ -7,9 +7,9 @@ export default async function handler(req, res) {
 
   try {
     const requestData = {
-      clientId: "TP_live_oah28kRLwXk51TNs",
+      clientId: "TP_live_9uiCZrRnqYnG6sY4",
       encryptedData:
-        "921f1710c5850ea31e2296f2f82b8047b99bab6c6b057c776709d6c58be9d129cfc1a687172bc95f2b40f8e8d878ca515ab5865453cb537bf317f71b33b26a8e6df2c8f1c74f867503c26d1361e1828f4e4c93d7b751dde7b1e274b4a319a53de8a9b8b4687fa2ca2cfb15b967aba36bf9a6ccb0582e09b68c138691e92734907d3707a5c70b278b3354c270c8a791f547f4995e6fbee6504471791aa762083b16e897bb771f82d85faaed2345d78661e5231c4c0e4051494ae911b668a650a1e6f2ecfbb34653a4c29995f9c781b022cd5473b11dbcf86ab924778525bfb564b9bf72df638c66e3baa79561ec2dcad73d6885d7e68c0a0b783a00638edc1fcab5af6ec35994e4c4a0e285277538870c7fc4e85be5cbb3a4a3d18ef7a37ec7d7",
+        "905bb3bbf2df39141e8e9a4d72f76cd4c8292bcf34738b66560222442b0d52db2bfdf4004200641e12b57b4695d0d7a2e7eb4840b0c7da5573b0e29d19c69cae0d759b8b855e7a49f51d89cc10dd6e54b03cd6136d6b6dc77b974645bb07897d9c4c69c0b57a5588fa029541b2cc8366684e22ba3784294f946c8ec22b9fe32cc5990330c75f76aee947e11553a983018bd3ab60765eba02fdc15f81e4fbf31c56d947f781e3160bb4dc0de80af1cd707d748d7b904dada3961bfae7344fdab9000754e5a1cc724f9d6e0e6aaa1fd4ed8b37a423a807dcaddea32e7f7264bcae5732b8a9040c7dcdadf3668662e30d811aa3f77ffe3cbf83752911bb3320cdce91b96596c4b1ce6051c8f28870b246568369b3d6671bec719b3bf025b517e4525bc1d8d97f5963c83e0c04ac6e42c9248198f0667a96f6862194b7f078b4f71a",
     };
 
     const response = await axios.post(
@@ -21,8 +21,8 @@ export default async function handler(req, res) {
     console.log("TrustlyPay raw response:", response.data);
 
     const encryptedResponse = response.data.encryptedData;
-    const salt = "I62yJhap0FO5W0YZ";
-    const key = "286C8AoxVG8RNkl9";
+    const salt = "GvrgMFwKiFil5P59";
+    const key = "YXpGF4ge7sF99emv";
 
     let paymentData;
     try {
