@@ -21,8 +21,8 @@ export default async function handler(req, res) {
     console.log("TrustlyPay raw response:", response.data);
 
     const encryptedResponse = response.data.encryptedData;
-    const salt = "GvrgMFwKiFil5P59";
-    const key = "YXpGF4ge7sF99emv";
+    const salt = "iq2sulxnpmPWzfX7";
+    const key = "0X82DrBelusUr7jY";
 
     let paymentData;
     try {
